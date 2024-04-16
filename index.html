@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qoop.ai</title>
+    <link rel="icon" type="image/x-icon" href="content\favicon-qoop.png">
+    <link rel="stylesheet" href="fonts.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #10294A;
+            color: #333;
+            padding: 0;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: clamp(2.5rem, 4.2vw, 5rem);
+            font-weight: 300;
+            letter-spacing: -2px;
+            line-height: 107%;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: clamp(2.1rem, 3.43vw, 4rem);
+            line-height: 112%;
+            letter-spacing: -2px;
+            text-align: center;
+            margin-bottom: 3vh;
+            color: #000;
+        }
+
+        p {
+            color: #fff;
+            font-size: 16px;
+            line-height: 19.6px;
+        }
+
+        input {
+            color: #000;
+            font-size: 16px;
+            line-height: 19.6px;    
+        }
+
+        label {
+            color: #000;
+            font-size: 16px;
+            line-height: 19.6px;
+            display: inline-block;
+            width: 100%; /* ajusta el ancho según sea necesario */
+            text-align: center; /* alinea el texto a la derecha */
+            margin-right: 10px; /* espacio entre el label y el input */
+        }
+
+        button {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+            border-radius: 25px;
+            padding: 1.7vh 2.5vw;
+            border: none;
+            cursor: pointer;
+            min-width: 196px;
+            max-width: 50%;
+            will-change: opacity;
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            outline: none;
+            border: none;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero {
+            height: 100svh;
+            background-color: #053D71;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo {
+            margin: 0 auto 2%;
+        }
+
+        .title {
+            margin-bottom: 1vh;
+        }
+
+        .cta-1 {
+            margin-top: 3vh;
+            background-color: #10294a;
+            transition: background-color 350ms ease-out;
+            opacity: 0;
+        }
+
+        .cta-1:hover {
+            background-color: #71D2BF;
+            transition: background-color 350ms ease-out;
+        }
+
+        .cta-2 {
+            margin: 4vh auto;
+            background-color: #71D2BF;
+            transition: background-color 350ms ease-out;
+            opacity: 0;
+        }
+
+
+        .texto-loop {
+           color: #fff;
+           font-size: clamp(72px, 10vw, 108px);
+           white-space: nowrap;
+           font-weight: 600; 
+           letter-spacing: -2px;
+           line-height: 130%;
+           text-align: center;
+           pointer-events: none;
+        }
+
+
+        .loop-1 {
+            margin-bottom: 3vh;
+        }
+
+        .loop-2 {
+            animation: moveLeft 28s linear infinite;
+            animation-direction: alternate;
+        }
+
+        .blur-wrapper {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            padding: 6vh 0 24vh;
+        }
+
+        .noti-wrapper {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+        }
+
+        .footer-wrapper {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+        }
+
+        .blur-1 {
+            position: absolute;
+            width: 2291px;
+            height: auto;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            z-index: -1;
+            transform: translate(5%, -55%);
+            -webkit-transform: translate(5%, -55%); /* Agregado para compatibilidad */
+            animation: blur1 20s ease-in-out infinite;
+        }
+
+        .blur-2 {
+            position: absolute;
+            width: 2291px;
+            height: auto;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            z-index: -1;
+            transform: translate(-50%, -5%);
+            -webkit-transform: translate(-50%, -5%); /* Agregado para compatibilidad */
+            animation: blur2 20s ease-in-out infinite;
+        }
+
+        .blur-3 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 26%;
+            left: 40%;
+            object-fit: cover;
+            z-index: -1;
+            animation: blur3 5s linear infinite;
+        }
+
+        .blur-4 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 26%;
+            right: 40%;
+            object-fit: cover;
+            z-index: -1;
+            animation: blur4 5s linear infinite;
+        }
+
+        .blur-5 {
+            position: absolute;
+            width: 8171px;
+            height: auto;
+            top: 0;
+            right: 0;
+            transform: translate(77%, -45%);
+            -webkit-transform: translate(77%, -45%); /* Agregado para compatibilidad */
+            object-fit: cover;
+            z-index: -1;
+            animation: blur5 20s linear infinite;
+        }
+
+        .ribbon {
+            background-color: #10294A;
+            height: 120px;
+            min-height: 100px;
+        }
+
+        .pc-module {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            z-index: 15;
+            animation: phoneUp 1s ease forwards;
+        }
+
+        .celular-1 {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(100%, 98%);
+            z-index: 15;
+            animation: phoneUp 1s ease forwards;
+        }
+
+        .celular-2 {
+            z-index: 50;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 110vh;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            background-color: #10294A;
+            overflow: hidden;
+        }
+        .redes{
+            border-radius: 50px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            margin: 12px;
+        }
+
+        .redes img {
+            width: 50px;
+            padding: 12px;
+            background-color: #7ddfcb;
+            border-radius: 0px;
+            border: 0 solid transparent ;
+        
+        }
+
+        .fade-in {
+            animation: fadeIn 1.1s ease forwards;
+        }
+
+        .fade-button {
+            animation: buttonFade 1s ease 0.75s forwards;
+        }
+
+        .fade-up {
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .popup-wrapper {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.33);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            visibility: hidden;
+        }
+
+        .popup-wrapper.visible {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+
+        .popup-wrapper.visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .3s, visibility 0s;
+        }
+
+
+        .popup {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 4.5vh 7vw;
+            border-radius: 16px;
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-popup {
+            color: #000;
+            text-decoration: underline;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 8px;
+            width: max-content;
+        }
+
+        .close-popup:hover {
+            color: red;
+        }
+
+        /*animaciones*/
+
+        @keyframes blur1 {
+            0% {
+                -webkit-transform: translate(5%, -55%);
+                transform: translate(5%, -55%);
+            }
+            50% {
+                -webkit-transform: translate(5%, -15%);
+                transform: translate(5%, -15%);
+            }
+            100% {
+                -webkit-transform: translate(5%, -55%);
+                transform: translate(5%, -55%);
+            }
+        }
+
+        @keyframes blur2 {
+            0% {
+                -webkit-transform: translate(-50%, -5%);
+                transform: translate(-50%, -5%);
+            }
+            50% {
+                -webkit-transform: translate(-50%, -20%);
+                transform: translate(-50%, -20%);
+            }
+            100% {
+                -webkit-transform: translate(-50%, -5%);
+                transform: translate(-50%, -5%);
+            }
+        }
+
+        @keyframes notificacion1 {
+            0% {
+                left: 3%;
+            }
+            100% {
+                left: 37%;
+            }
+        }
+
+        @keyframes notificacion2 {
+            0% {
+                left: 22%;
+            }
+            50% {
+                left: 39%;
+            }
+            100% {
+                left: 22%;
+            }
+        }
+
+        @keyframes notificacion4 {
+            0% {
+                right: 3%;
+            }
+            100% {
+                right: 37%;
+            }
+        }
+
+        @keyframes notificacion3 {
+            0% {
+                right: 22%;
+            }
+            50% {
+                right: 39%;
+            }
+            100% {
+                right: 22%;
+            }
+        }
+
+        @keyframes blur3 {
+            0%, 100% {
+                left: 45%;
+            }
+            3% {
+                left: 28%;
+            }
+            23% {
+                left: 28%;
+            }
+            26% {
+                left: 45%;
+            }
+        }
+
+        @keyframes blur4 {
+            0%, 100% {
+                right: 45%;
+            }
+            3% {
+                right: 28%;
+            }
+            23% {
+                right: 28%;
+            }
+            26% {
+                right: 45%;
+            }
+        } 
+
+        @keyframes blur5 {
+            0%, 100% {
+                -webkit-transform: translate(77%, -45%) rotate(180deg);
+                transform: translate(77%, -45%) rotate(180deg);
+            }
+            50% {
+                -webkit-transform: translate(72%, -45%) rotate(180deg);
+                transform: translate(72%, -45%) rotate(180deg);
+            }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CER1RQ0XBV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CER1RQ0XBV');
+    </script>
+    <script>
+        window.addEventListener("load", function() {
+          const form = document.getElementById('myform');
+          form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const action = e.target.action;
+            fetch(action, {
+              method: 'POST',
+              body: data,
+            })
+            .then(() => {
+              alert("Submitted! Thank you for your signup. We will keep you posted upon our launch!");
+            })
+          });
+        });
+    </script>
+</head>
+<body>
+    <section class="hero">
+        <div class="popup-wrapper">
+            <div class="popup" >
+                <h2>We'll tell you </br><span style="font-weight: 600;">when it's ready</span></h2>
+                <form style="display: flex; flex-direction: column; width: 100%;" id="myform" action="https://api.sheetmonkey.io/form/si5zBdNmPVCpEgFJYU3j7k" method="post">
+                    <label for="name" style="margin-bottom: 4px; text-align: left; display: block; width: 100%;">Name:</label>
+                    <input type="text" id="name" name="Name" required style="width: 100%; border: none; border-bottom: 1px solid black; margin-bottom: 8px;" />
+                    <label for="email" style="margin-bottom: 4px; text-align: left; display: block; width: 100%;">Email:</label>
+                    <input type="email" id="email" name="Email" required style="width: 100%; border: none; border-bottom: 1px solid black;" />                                                
+                  <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+                  <input class="cta-1" style="opacity: 1; color: #fff; border: none; border-radius: 50px; padding: 1vh 2vw; margin-top: 8px;" type="submit" value="Sign Up" />  
+                </form>
+                <p class="close-popup">Close</p> 
+            </div>
+        </div> 
+        <div class="blur-wrapper">
+            <img class="blur-1" src="content\blur-verde.png" alt="">
+            <img  class="blur-2" src="content\blur-verde.png" alt="">
+            <div class="row-hero flex-column" style="justify-content: space-between; height: 100%;">
+                <div class="flex-column">
+                    <a href="index.html">
+                        <img class="logo" src="content\qoop-ai.avif" style="width: 188px; height: 82px; object-fit: cover; margin-bottom: 2vh;" alt="Descripción de la imagen">
+                      </a>
+                    <h1 class="title fade-in" style="opacity: 0; will-change: transform;"><span style="font-weight: 600;">Your Ai</span> Life Assistant.</h1>
+                    <p class="fade-in" style="text-align: center; opacity: 0;">anything, anywhere, anytime</p>
+                    <button class="sign-up cta-1 fade-button">Sign Up</button>                                          
+                </div>
+                <div class="textos-animados">
+                    <h2 class="texto-loop loop-1" style="will-change: transform; color: #10294a;">Personal Requests. Organization. Efficency. Personal Requests. Organization. Efficency.</h2>
+                    <h2 class="texto-loop loop-2" style="color: #6cc8be;">Anything. Anywhere. Anytime. Anything. Anywhere. Anytime. Anything. Anywhere. Anytime. Anything. Anywhere. Anytime.</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="width: 100%;">
+        <img loading="lazy" class="pc-module module-pc-up" style="will-change: transform; width: 832px; max-width: 100%;" src="content\modulo-pc.png" alt="">
+        <img loading="lazy" class="celular-1 module-phone-up" style="will-change: transform; width: 208px; max-width: 18%;" src="content\telefono-2-png.png" alt="">
+    </section>
+    <section class="ribbon">
+    </section>
+    <section class="features">
+        <div class="noti-wrapper">
+            <img loading="lazy" class="blur-3" style="will-change: transform;" src="content\blur-azul.png" alt="">
+            <img loading="lazy" class="blur-4" style="will-change: transform;" src="content\blur-verde.png" alt="">
+            <div class="row-hero flex-column" style="height: 100%;">
+                <div class="flex-column" style="width: 700px; max-width: 90%;">
+                    <h2 class="fade-in" style="will-change: auto;">Providing you a tool that<span style="font-weight: 600;"> simplifies the rest</span></h2>
+                    <p class="fade-in" style="text-align: center; color: #000; margin-bottom: 6vh;">All available solutions integrated into one Ai model</p>
+                    <img loading="lazy" class="tira-1 tira-noti-1" style="width: 2250px; position: absolute; top: 40%; left: 0; will-change: scroll-position;" src="content\tira-notificaciones-1.png" alt="">
+                    <img loading="lazy" class="tira-2 tira-noti-2" style="width: 2250px; position: absolute; top: 55%; left: -470px; will-change: scroll-position;" src="content\tira-notificaciones-2.png" alt="">
+                    <img loading="lazy" class="tira-3 tira-noti-3" style="width: 2250px; position: absolute; top: 70%; left: 0; will-change: scroll-position;" src="content\tira-notificaciones-3.png" alt="">
+                    <img class="celular-2" style="width: 296px; max-width: 80%;" src="content\telefono-1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="footer-wrapper">
+            <img loading="lazy" class="blur-5" style="will-change: transform;" src="content\blur-verde.png" alt="">
+            <div class="row-hero flex-column" style="height: 100%;">
+                <div class="flex-column" style="width: 700px;  max-width: 90%;">
+                    <h2 class="fade-up" style="margin-bottom: 3vh; color: #fff;">Let qoop,<span style="font-weight: 600;"> get control</span></h2>
+                    <button class="sign-up cta-2 fade-button">Sign Up</button>                      
+                    <img loading="lazy" class="logo fade-button" src="content\qoop-ai.avif" style="opacity: 0; width: 188px; height: 82px; object-fit: cover; margin: 0 auto 1.8vh;" alt="">
+                    <div style="display: flex; justify-content: center;">
+                        <div class="redes">
+                            <a href="https://www.linkedin.com/company/qoop-ai/" target="_blank">
+                                <img loading="lazy" class="sociales" src="content\linkedin.png" alt="">
+                            </a>
+                        </div>                            
+                         <div class="redes">
+                            <a href="https://www.instagram.com/qoop.ai/" target="_blank">
+                                <img loading="lazy" class="sociales" src="content\instagram.png" alt="">
+                            </a>
+                         </div>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <img loading="lazy" style="width: 300px; max-width: 90%;" src="content\nvidia-inception-program-badge.png" alt="">                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="scripts/main.js"></script>  
+</body>
+</html>
